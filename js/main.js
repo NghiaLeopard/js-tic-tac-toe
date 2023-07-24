@@ -1,3 +1,13 @@
+import {
+    getCellElementList,
+    getCellElementAtIdx,
+    getCurrentTurnElement,
+    getGameStatusElement,
+} from "./selectors.js";
+// import liên kết giữa các module
+
+// import
+console.log(getCellElementList());
 /**
  * Global variables
  */
