@@ -35,7 +35,7 @@
 // }
 //
 
-import { GAME_STATUS } from "./constants";
+import { CELL_VALUE, GAME_STATUS, TURN } from "./constants.js";
 
 // Input: an array of 9 items
 // Output: an object as mentioned above
@@ -43,10 +43,52 @@ export function checkGameStatus(cellValues) {
     // Write your code here ...
     // Please feel free to add more helper function if you want.
     // It's not required to write everything just in this function.
-    
 
+    // Win
+
+    const checkList = [
+        [0, 1, 2],
+        [0, 4, 8],
+        [0, 3, 6],
+
+        [1, 4, 7],
+        [2, 4, 6],
+        [2, 5, 8],
+
+        [3, 4, 5],
+        [6, 7, 8],
+    ];
+
+    const index = checkList.findIndex((set) => {
+        const first = cellValues[set[0]];
+        const second = cellValues[set[1]];
+        const third = cellValues[set[2]];
+
+        return first !== "" && first === second && second === third;
+    });
+    if (index >= 0) {
+        const winCheckList = checkList[index][0];
+        const winElement = cellValues[winCheckList];
+        console.log(winElement);
+
+        return {
+            status:
+                winElement === CELL_VALUE.CROSS
+                    ? GAME_STATUS.X_WIN
+                    : GAME_STATUS.O_WIN,
+            winPositions: checkList[index],
+        };
+    }
+    // End
+
+    const newCellElement = cellValues.filter((x) => x === "");
+
+    // Playing
     return {
-        status: GAME_STATUS.PLAYING,
+        status:
+            newCellElement.length === 0
+                ? GAME_STATUS.ENDED
+                : GAME_STATUS.PLAYING,
         winPositions: [],
     };
 }

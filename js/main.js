@@ -5,6 +5,7 @@ import {
     getCurrentTurnElement,
     getGameStatusElement,
 } from "./selectors.js";
+import { checkGameStatus } from "./utils.js";
 
 // import liên kết giữa các module
 
