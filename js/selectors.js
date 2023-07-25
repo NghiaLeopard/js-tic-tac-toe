@@ -7,7 +7,7 @@ export function getCellElementList() {
     return document.querySelectorAll("#cellList>li");
 }
 export function getCurrentTurnElement() {
-    return document.getElementById("currentTurns");
+    return document.getElementById("currentTurn");
 }
 export function getCellElementAtIdx(index) {
     return document.querySelector(`ul#cellList>li:nth-child(${index + 1})`);
