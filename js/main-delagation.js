@@ -5,6 +5,7 @@ import {
     getCurrentTurnElement,
     getGameStatusElement,
     getShowElement,
+    getUlList,
 } from "./selectors.js";
 import { checkGameStatus } from "./utils.js";
 
@@ -117,10 +118,20 @@ function handleReplayElement() {
 
 function initCellElementList() {
     const cellElementList = getCellElementList();
+    const ulList = getUlList();
 
-    cellElementList.forEach((cell, index) =>
-        cell.addEventListener("click", () => handleCellElement(cell, index))
-    );
+    cellElementList.forEach((cell, index) => {
+        cell.dataset.id = index;
+    });
+
+    ulList.addEventListener("click", (event) => {
+        if (event.target.tagName != "LI") return;
+        const index = Number.parseInt(event.target.dataset.id);
+        handleCellElement(event.target, index);
+    });
+
+    // event Delegation : nhanh hơn chỉ cần trỏ tới ul với tìm index của li đấy , nếu không cần dùng không gắn đỡ nhiều hơn
+    // còn trường hợp main kia thì phải xét tất cả sự kiện cho thẻ li rồi lúc nào ấn thì có sẵn , rất lâu
 }
 
 function initReplayElement() {

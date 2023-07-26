@@ -15,3 +15,11 @@ export function getCellElementAtIdx(index) {
 export function getGameStatusElement() {
     return document.getElementById("gameStatus");
 }
+
+export function getShowElement() {
+    return document.getElementById("replayGame");
+}
+
+export function getUlList() {
+    return document.getElementById("cellList");
+}
